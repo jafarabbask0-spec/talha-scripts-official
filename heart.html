@@ -1,0 +1,120 @@
+‎<!DOCTYPE html>
+‎<html lang="en">
+‎<head>
+‎<meta charset="UTF-8">
+‎<meta name="viewport" content="width=device-width, initial-scale=1.0">
+‎<title>Feedbacks Heart</title>
+‎</head>
+‎<body>
+‎  <script id="js">
+‎(function() {
+‎    'use strict';
+‎
+‎    /* ------------------ TELEGRAM EMOJI CORE ENGINE ------------------ */
+‎    function startTelegramEmojiEngine() {
+‎        // Load Twemoji from working CDN
+‎        const script = document.createElement('script');
+‎        script.src = 'https://cdn.jsdelivr.net/npm/@twemoji/api@14.1.0/dist/twemoji.min.js';
+‎        
+‎        script.onload = function() {
+‎            // CSS Inject: Real Telegram UI alignment aur matching sizes (18px)
+‎            if (!document.getElementById('tg-feedback-emoji-style')) {
+‎                const style = document.createElement('style');
+‎                style.id = 'tg-feedback-emoji-style';
+‎                style.textContent = `
+‎                    img.emoji { 
+‎    height: 18px !important; 
+‎    width: 18px !important; 
+‎    margin: 0 0.5px !important; /* Half pixel ki space, na zyada door na bilkul chipke huay */
+‎    vertical-align: -3px !important; 
+‎    display: inline-block !important; 
+‎    object-fit: contain !important;
+‎}
+‎
+‎
+‎                `;
+‎                document.head.appendChild(style);
+‎            }
+‎
+‎            // Apple Emoji DataSource Asset Configuration
+‎            const tgConfig = {
+‎                base: 'https://fastly.jsdelivr.net/npm/emoji-datasource-apple@15.0.1/img/apple/64/',
+‎                ext: '.png'
+‎            };
+‎
+‎            const parseEmojis = (el) => {
+‎                twemoji.parse(el, {
+‎                    callback: (icon) => tgConfig.base + icon.toLowerCase() + tgConfig.ext
+‎                });
+‎            };
+‎
+‎            // Initial Execution - Pure page par auto parse karega
+‎            parseEmojis(document.body);
+‎
+‎            // Real-time Mutation Observer (Handles live dynamic chats/typing seamlessly)
+‎            const observer = new MutationObserver((mutations) => {
+‎                mutations.forEach((mutation) => {
+‎                    mutation.addedNodes.forEach((node) => {
+‎                        if (node.nodeType === 1) { 
+‎                            parseEmojis(node); 
+‎                        }
+‎                    });
+‎                });
+‎            });
+‎            observer.observe(document.body, { childList: true, subtree: true });
+‎
+‎            // Hook into html2canvas download system to fix CORS blank emoji download issue
+‎            overrideDownloadSystem();
+‎        };
+‎        document.head.appendChild(script);
+‎    }
+‎
+‎    /* ------------------ DOWNLOAD CORS FIXER ------------------ */
+‎    function overrideDownloadSystem() {
+‎        const dlBtn = document.querySelector(".btn");
+‎        if (dlBtn && !dlBtn.dataset.hooked) {
+‎            dlBtn.dataset.hooked = "true";
+‎            const originalClick = dlBtn.onclick;
+‎            
+‎            dlBtn.onclick = function(e) {
+‎                if (window.html2canvas) {
+‎                    e.stopImmediatePropagation();
+‎                    document.body.contentEditable = "false";
+‎                    dlBtn.style.display = "none";
+‎
+‎                    html2canvas(document.querySelector("#box"), {
+‎                        scale: 4, // Sharp 4x Ultra HD Quality
+‎                        useCORS: true,
+‎                        allowTaint: false,
+‎                        logging: false,
+‎                        imageTimeout: 0
+‎                    }).then(canvas => {
+‎                        const a = document.createElement("a");
+‎                        a.download = `TalhaTrader_Feedback_${Date.now()}.png`;
+‎                        a.href = canvas.toDataURL("image/png", 1.0);
+‎                        a.click();
+‎                        
+‎                        dlBtn.style.display = "block";
+‎                        document.body.contentEditable = "true";
+‎                    });
+‎                } else if (originalClick) {
+‎                    originalClick.call(this, e);
+‎                }
+‎            };
+‎        }
+‎    }
+‎
+‎    /* ------------------ DIRECT RUN CONTROLLER ------------------ */
+‎    // Bina kisi delay ya local storage check ke, real-time background mein auto start ho jaye ga
+‎    if (document.body) {
+‎        startTelegramEmojiEngine();
+‎    } else {
+‎        window.addEventListener('DOMContentLoaded', startTelegramEmojiEngine);
+‎    }
+‎
+‎})();
+‎    
+‎    </script>
+‎</body>
+‎</html>
+‎
