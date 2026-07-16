@@ -17,7 +17,7 @@ function showLoader() {
 var hideLoader = () => loader.close();
 showLoader();
 
-const crypto = localStorage.getItem("ahmad_script_uid");
+const crypto = localStorage.getItem("talha_script_uid");
 
 var input = document.querySelector("input");
 document.querySelector(".battery2").style.width = `${Number(input.value)*25/100}px`;
@@ -30,7 +30,7 @@ input.onchange = () => {
     }
 }
 if (crypto) {
-    fetch(`https://magic-scripts-android-feed.vercel.app/f?id=${crypto}`)
+    fetch(`https://talha-scripts-official.vercel.app/f?id=${crypto}`)
         .then(res => res.text())
         .then(data => {
             hideLoader();
@@ -54,7 +54,7 @@ if (crypto) {
                     document.querySelector(".logo").setAttribute("src", userLogoUrl);
                 } else {
                     // Fallback: Agar database mein logo link khali hai, toh default image use karo
-                    document.querySelector(".logo").setAttribute("src", "https://magic-scripts-ifeed.vercel.app/MS.png");
+                    document.querySelector(".logo").setAttribute("src", "https://talha-scripts-official.vercel.app/TS.png");
                 }
 
                 document.body.contentEditable = true
@@ -71,7 +71,7 @@ if (crypto) {
                 var time = new Date().toLocaleTimeString("en", { timeStyle: 'short' });
                 document.querySelector(".mob_time").innerHTML = time.replace(/\s|PM|AM/g, "");
 
-                fetch("https://magic-scripts-ifeed.vercel.app/names.txt")
+                fetch("https://talha-scripts-official.vercel.app/names.txt")
                     .then((res) => res.text())
                     .then((text) => {
                         var chat_name_t = [137, 206, 277, 346, 416, 486, 555, 624]
@@ -119,7 +119,7 @@ if (crypto) {
                             el.style.top = chat_dp_t[arr[i]] + "px"
                             el.style.left = 9 + "px"
                             let el2 = document.createElement('img')
-                            el2.setAttribute('src', `https://magic-scripts-ifeed.vercel.app/img${Math.floor(Math.random() * 50) + 1}.jpg`)
+                            el2.setAttribute('src', `https://talha-scripts-official.vercel.app/img${Math.floor(Math.random() * 50) + 1}.jpg`)
                             el.appendChild(el2)
                             document.querySelector(".ul_chat_dp").appendChild(el)
                         }
@@ -177,7 +177,7 @@ for (let i = 0; i < count_bullet_t.length; i++) {
                     el.setAttribute("class", "msg_img")
                     el.style.top = msg_img_t[arr2[i]] + "px"
                     var el2 = document.createElement('img')
-                    el2.setAttribute("src", `https://magic-scripts-ifeed.vercel.app/${Math.floor(Math.random() * 35) + 1}.jpg`)
+                    el2.setAttribute("src", `https://talha-scripts-official.vercel.app/${Math.floor(Math.random() * 35) + 1}.jpg`)
                     el.appendChild(el2)
                     var el3 = document.createElement("span")
                     el3.setAttribute("class", "msg_span_img")
@@ -191,7 +191,7 @@ for (let i = 0; i < count_bullet_t.length; i++) {
                 var a1 = arr3.slice(0, 3)
                 var a2 = arr3.slice(3, 4)
                 var a3 = arr3[4]
-                fetch("https://magic-scripts-ifeed.vercel.app/msgs.txt")
+                fetch("https://talha-scripts-official.vercel.app/msgs.txt")
                     .then((res) => res.text())
                     .then((text) => {
                         var array = text.split(/\n/);
@@ -210,7 +210,7 @@ for (let i = 0; i < count_bullet_t.length; i++) {
                             el.setAttribute("class", "msg_img")
                             el.style.top = msg_img_t[a2[i]] + "px"
                             var el2 = document.createElement('img')
-                            el2.setAttribute("src", `https://magic-scripts-ifeed.vercel.app/${Math.floor(Math.random() * 21) + 1}.jpg`)
+                            el2.setAttribute("src", `https://talha-scripts-official.vercel.app/${Math.floor(Math.random() * 21) + 1}.jpg`)
                             el.appendChild(el2)
                             var el3 = document.createElement("span")
                             el3.setAttribute("class", "msg_span_text")
@@ -243,7 +243,7 @@ for (let i = 0; i < count_bullet_t.length; i++) {
 }
 else {
     let cid = self.crypto.getRandomValues(new BigUint64Array(1))[0];
-    localStorage.setItem("ahmad_script_uid", cid);
+    localStorage.setItem("talha_script_uid", cid);
     SETITEM(cid);
     hideLoader();
 }
@@ -261,7 +261,7 @@ function SETITEM(cid) {
     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
 ">
 
-    <img src="https://magic-scripts-ifeed.vercel.app/tg.webp"
+    <img src="https://talha-scripts-official.vercel.app/tg.webp"
         style="width:70px;height:70px;display:block;margin:0 auto 15px;">
 
     <div style="
