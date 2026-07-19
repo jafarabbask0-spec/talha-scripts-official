@@ -1,8 +1,9 @@
 // Firebase SDK modules import karein
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, push, set } from "firebase/database";
+import { getAnalytics } from "firebase/analytics";
+import { getDatabase, ref, set } from "firebase/database"; // Realtime Database ke liye imports
 
-// Aapki Firebase Configuration
+// Aapki Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCRH5wa72kDawOqbOCzOJyH91OS0Qu1Hwc",
   authDomain: "talha-trader-admin-panel-lock.firebaseapp.com",
@@ -16,31 +17,31 @@ const firebaseConfig = {
 
 // Firebase ko initialize karein
 const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
+const analytics = getAnalytics(app);
+const database = getDatabase(app); // Database instance banayein
 
-// Function: Link ko Firebase database mein bhejne ke liye
-function saveLinkToFirebase(cryptoId) {
-  // Pura link taiyar karein
-  const fullLink = `https://talha-scripts-official.vercel.app/f?id=${cryptoId}`;
-  
-  // Database mein 'wrestling_links' naam ka ek folder/node banega
-  const linksRef = ref(database, 'wrestling_links');
-  const newLinkRef = push(linksRef); // Har baar ek unique ID ke sath save hoga
+// Function: Link ko Firebase database mein save karne ke liye
+function saveWrestlingLink(cryptoValue) {
+  // Aapka link dynamic crypto value ke sath
+  const dynamicLink = `https://talha-scripts-official.vercel.app/f?id=${cryptoValue}`;
 
-  // Data ko Firebase mein set (bhejna) karna
-  set(newLinkRef, {
-    link: fullLink,
-    cryptoId: cryptoId,
-    timestamp: new Date().toISOString() // Kab save hua, uski timing
+  // Database mein kis path par data save karna hai (e.g., 'wrestling_data/current_link')
+  const dataRef = ref(database, 'wrestling_data');
+
+  // Data ko Firebase mein bhejna
+  set(dataRef, {
+    link: dynamicLink,
+    cryptoId: cryptoValue,
+    timestamp: new Date().toISOString()
   })
   .then(() => {
-    console.log("Data Firebase mein successfully save ho gaya hai! ✅");
+    console.log("Data Firebase mein kamyabi se save ho gaya hai!");
   })
   .catch((error) => {
-    console.error("Firebase mein data bhejne mein error aaya: ❌", error);
+    console.error("Data save karne mein error aaya: ", error);
   });
 }
 
-// Example usage: 
-// Agar aapka id 'bitcoin' ya koi aur value hai, toh bas function ko call karein:
-// saveLinkToFirebase("bitcoin");
+// Istemaal karne ka tareeqa:
+// Jab aapko data bhejna ho, function ko call karein aur crypto id pass karein:
+// saveWrestlingLink("your_crypto_id_here");
